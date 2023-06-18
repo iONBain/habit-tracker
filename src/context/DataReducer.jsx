@@ -1,3 +1,5 @@
+import { habits } from "../data/data";
+
 export const initialState = {
     habits: [],
     optionsGoal: [],
@@ -30,6 +32,16 @@ export const initialState = {
         return {
           ...state,
           editHabit: action.payload
+        }
+      case "ARCHIVE_HABIT":
+        return {
+          ...state,
+          habits: habits.map(habit=> habit.id === action.payload ? {...habit, isArchived:true }: habit)
+        }
+      case "DELETE_HABIT":
+        return {
+          ...state,
+          habits: [...habits].filter(habit=> habit.id !== action.payload)
         }
       default:
         throw new Error("Error in reducer");

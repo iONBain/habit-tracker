@@ -11,9 +11,16 @@ import {
 
 const AddNewHabit = () => {
   const {
-    data: { habits,showPopup,editHabit },
+    data: { habits, showPopup, editHabit },
     dataDispatch,
   } = useContext(DataContext);
+  const {
+    title:titleVal,
+    timeOfDay:timeOfDayVal,
+    goal:goalVal,
+    startDate:startDateVal,
+    repeat:repeatVal,
+  } = editHabit ? editHabit : {};
   const nameRef = useRef();
   const repeatRef = useRef();
   const goalRef = useRef();
@@ -28,7 +35,7 @@ const AddNewHabit = () => {
   };
   const handleSubmit = () => {
     const habitData = {
-      id: habits.length+1 ,
+      id: habits.length + 1,
       title: nameRef.current.value,
       timeOfDay: timeOfDayRef.current.value,
       goal: goalRef.current.value,
@@ -41,9 +48,9 @@ const AddNewHabit = () => {
       payload: habitData,
     });
     dataDispatch({
-        type:"SET_SHOW_POPUP",
-        payload:false
-    })
+      type: "SET_SHOW_POPUP",
+      payload: false,
+    });
   };
 
   return (
@@ -55,6 +62,7 @@ const AddNewHabit = () => {
           <label htmlFor="habitName" className="gap-10 flex-column">
             <p> Name: </p>
             <input
+              value={titleVal}
               ref={nameRef}
               id="habitName"
               placeholder="Enter Habit name ..."
@@ -66,7 +74,7 @@ const AddNewHabit = () => {
           <section className="flex-row gap-10 sp-bw">
             <label htmlFor="habitRepeat" className="gap-10 flex-column">
               <p> Repeat: </p>
-              <select ref={repeatRef} name="habitRepeat" id="habitRepeat">
+              <select ref={repeatRef} name="habitRepeat" id="habitRepeat" value={repeatVal}>
                 {optionsRepeat.map((val) => (
                   <option key={val} value={val}>
                     {val}
@@ -76,7 +84,7 @@ const AddNewHabit = () => {
             </label>
             <label htmlFor="habitRepeat" className="gap-10 flex-column">
               <p> Goal: </p>
-              <select ref={goalRef} name="habitRepeat" id="habitRepeat">
+              <select ref={goalRef} name="habitRepeat" id="habitRepeat" value={goalVal}>
                 {optionsGoal.map((val) => (
                   <option key={val} value={val}>
                     {val}
@@ -90,7 +98,7 @@ const AddNewHabit = () => {
           <section className="flex-row gap-10 sp-bw">
             <label htmlFor="habitRepeat" className="gap-10 flex-col">
               <p> Time of Day: </p>
-              <select ref={timeOfDayRef} name="habitRepeat" id="habitRepeat">
+              <select ref={timeOfDayRef} name="habitRepeat" id="habitRepeat" value={timeOfDayVal}>
                 {optionsTimeOfDay.map((val) => (
                   <option key={val} value={val}>
                     {val}
@@ -100,7 +108,7 @@ const AddNewHabit = () => {
             </label>
             <label htmlFor="habitRepeat" className="gap-10 flex-col">
               <p> Start Date: </p>
-              <select ref={startDateRef} name="habitRepeat" id="habitRepeat">
+              <select ref={startDateRef} name="habitRepeat" id="habitRepeat" value={startDateVal}>
                 {optionsStartDate.map((val) => (
                   <option key={val} value={val}>
                     {val}
