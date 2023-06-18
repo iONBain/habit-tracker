@@ -24,14 +24,14 @@ const AddNewHabit = () => {
       [name]: value,
     }));
   };
+
   const handleClose = () => {
     dataDispatch({
       type: "SET_SHOW_POPUP",
       payload: false,
     });
-   
   };
-  useEffect(() => console.log(formHabit), [formHabit]);
+
   const handleSubmit = () => {
     const habitData = onEdit
       ? formHabit

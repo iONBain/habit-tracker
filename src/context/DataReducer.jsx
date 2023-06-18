@@ -50,6 +50,13 @@ export function dataReducer(state, action) {
           habit.id === action.payload ? { ...habit, isArchived: true } : habit
         ),
       };
+    case "UNARCHIVE_HABIT":
+      return {
+        ...state,
+        habits: state.habits.map((habit) =>
+          habit.id === action.payload ? { ...habit, isArchived: false } : habit
+        ),
+      };
     case "DELETE_HABIT":
       return {
         ...state,

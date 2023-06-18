@@ -4,7 +4,7 @@ import "./components.css"
 import { DataContext } from "../context/DataContext"
 
 const HabitCard = ({habit, isNew}) => {
-    const {data:{habits},dataDispatch} = useContext(DataContext)
+    const {dataDispatch} = useContext(DataContext)
     const handleNewHabit = () => {
         dataDispatch({
             type: "SET_ON_EDIT",
@@ -13,7 +13,6 @@ const HabitCard = ({habit, isNew}) => {
         dataDispatch({
             type:"SET_EDIT_HABIT",
             payload:{
-            id:habits.length+1,
             title: "",
             timeOfDay: "Anytime",
             goal: "Daily Once",

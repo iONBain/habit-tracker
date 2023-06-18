@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { FaDownload, FaPen, FaTrash } from "react-icons/fa";
+import { FaDownload, FaPen, FaTrash, FaUpload } from "react-icons/fa";
 import { DataContext } from "../context/DataContext";
 
 const Actions = ({ habit }) => {
@@ -19,9 +19,14 @@ const Actions = ({ habit }) => {
     });
   };
   const handleArchive = () => {
-    console.log(habit.id)
     dataDispatch({
       type:"ARCHIVE_HABIT",
+      payload:habit.id
+    })
+  };
+  const handleUnarchive = () => {
+    dataDispatch({
+      type:"UNARCHIVE_HABIT",
       payload:habit.id
     })
   };
@@ -35,7 +40,12 @@ const Actions = ({ habit }) => {
     <div className="action-main">
       <FaPen onClick={handleEdit} />
       <FaTrash onClick={handleDelete} />
-      <FaDownload onClick={handleArchive } />
+      {
+        habit.isArchived ? 
+
+         <FaUpload onClick={handleUnarchive} />
+        : <FaDownload onClick={handleArchive } />
+      }
     </div>
   );
 };
