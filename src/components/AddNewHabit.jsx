@@ -14,20 +14,13 @@ const AddNewHabit = () => {
     data: { habits, showPopup, editHabit, onEdit },
     dataDispatch,
   } = useContext(DataContext);
-  const [formHabit, setFormHabit] = useState(
-    editHabit || {
-      title: "",
-      timeOfDay: "",
-      goal: "",
-      startDate: "",
-      repeat: "",
-    }
-  );
-
+  const [formHabit, setFormHabit] = useState(editHabit);
+  useEffect(()=>setFormHabit(editHabit), [editHabit])
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormHabit((prev) => ({
-      ...[prev],
+      ...prev,
       [name]: value,
     }));
   };
@@ -36,11 +29,9 @@ const AddNewHabit = () => {
       type: "SET_SHOW_POPUP",
       payload: false,
     });
-    dataDispatch({
-      type: "SET_ON_EDIT",
-      payload: true,
-    });
+   
   };
+  useEffect(() => console.log(formHabit), [formHabit]);
   const handleSubmit = () => {
     const habitData = onEdit
       ? formHabit
@@ -58,22 +49,8 @@ const AddNewHabit = () => {
       payload: false,
     });
   };
-  const handleEdit = () => {
-    if (onEdit) {
-      setFormHabit(editHabit);
-    } else {
-      setFormHabit({
-        title: "",
-        timeOfDay: "",
-        goal: "",
-        startDate: "",
-        repeat: "",
-      });
-    }
-  };
-  useEffect(() => {
-    handleEdit();
-  }, [onEdit]);
+
+
   return (
     <div className={`${!showPopup && "display-none"}`}>
       <section className={`add-new-main`}>
@@ -97,7 +74,7 @@ const AddNewHabit = () => {
             <label htmlFor="habitRepeat" className="gap-10 flex-column">
               <p> Repeat: </p>
               <select
-                name="habitRepeat"
+                name="repeat"
                 id="habitRepeat"
                 value={formHabit.repeat}
                 onChange={handleChange}
@@ -112,7 +89,7 @@ const AddNewHabit = () => {
             <label htmlFor="habitRepeat" className="gap-10 flex-column">
               <p> Goal: </p>
               <select
-                name="habitRepeat"
+                name="goal"
                 id="habitRepeat"
                 value={formHabit.goal}
                 onChange={handleChange}
@@ -131,7 +108,7 @@ const AddNewHabit = () => {
             <label htmlFor="habitRepeat" className="gap-10 flex-col">
               <p> Time of Day: </p>
               <select
-                name="habitRepeat"
+                name="timeOfDay"
                 id="habitRepeat"
                 value={formHabit.timeOfDay}
                 onChange={handleChange}
@@ -146,7 +123,7 @@ const AddNewHabit = () => {
             <label htmlFor="habitRepeat" className="gap-10 flex-col">
               <p> Start Date: </p>
               <select
-                name="habitRepeat"
+                name="startDate"
                 id="habitRepeat"
                 value={formHabit.startDate}
                 onChange={handleChange}

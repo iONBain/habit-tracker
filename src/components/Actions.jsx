@@ -15,10 +15,6 @@ const Actions = ({ habit }) => {
     });
     dataDispatch({
       type: "SET_ON_EDIT",
-      payload: false,
-    });
-    dataDispatch({
-      type: "SET_ON_EDIT",
       payload: true,
     });
   };
