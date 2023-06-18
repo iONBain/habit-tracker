@@ -1,0 +1,14 @@
+.habit-card{
+    border: 2px solid var(--accent);
+    min-height: 100px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+    border-radius: 1rem;
+    margin: .5rem 0;
+    transition: all 0.2s ease-in;
+}
+.habit-card:hover{
+    background-color: rgba(236, 236, 236, 0.148);
+}

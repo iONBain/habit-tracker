@@ -1,3 +1,29 @@
+/* for all components */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* variables */
+:root {
+    --grey: grey;
+    --accent: rgb(26, 192, 82);
+    --black: rgb(17, 29, 39);
+    --white:rgb(242, 237, 255);
+}
+body{
+    background-color: var(--black);
+    color: var(--white);
+}
+.accent{
+    color: var(--accent);
+}
+.grey{
+    color: var(--grey);
+}
+
+/* layouts */
 .flex-row{
     display: flex;
     flex-direction: row;
@@ -12,4 +38,7 @@
 }
 .gap-10{
     gap: 10px;
+}
+.display-none{
+    display: none;
 }
