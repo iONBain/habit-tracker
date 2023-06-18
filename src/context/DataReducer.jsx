@@ -3,7 +3,8 @@ export const initialState = {
     optionsGoal: [],
     optionsTimeOfDay: [],
     optionsStartDate:[],
-    showPopup:false
+    showPopup:false,
+    editHabit:{}
   };
   
   export function dataReducer(state, action) {
@@ -15,8 +16,21 @@ export const initialState = {
             ...habit
           }))
         };
-  
-      
+      case "SET_SHOW_POPUP":
+        return {
+          ...state,
+          showPopup:action.payload
+        }
+      case "ADD_HABIT":
+        return {
+          ...state,
+          habits: [...state.habits, action.payload]
+        }
+      case "SET_EDIT_HABIT":
+        return {
+          ...state,
+          editHabit: action.payload
+        }
       default:
         throw new Error("Error in reducer");
     }

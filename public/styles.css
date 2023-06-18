@@ -36,9 +36,62 @@ body{
     align-items: center;
     justify-content: center;
 }
+.sp-bw{
+    justify-content: space-between;
+}
 .gap-10{
     gap: 10px;
 }
+.gap-20{
+    gap: 20px;
+}
 .display-none{
     display: none;
+}
+.wrap{
+    flex-wrap: wrap;
+}
+.max-width-50{
+    max-width: 50%;
+}
+
+/* navLink */
+.nav-link{
+    text-decoration: none;
+    color: var(--white);
+    padding: .5rem;
+    margin: 5px;
+    margin-bottom: 20px;
+
+}
+.selected{
+    border-bottom: 2px solid var(--accent);
+}
+
+/* labels and inputs */
+input[type="text"]{
+    transition: all 0.2s ease-in;
+    outline: none;
+    border: none;
+    padding: 5px;
+    border-radius: 6px;
+    font-weight: 600;
+
+}
+input[type="text"]:is(:hover,:focus) {
+    background-color: var(--white);
+    color: var(--accent);
+}
+input::placeholder{
+    color: var(--grey);
+}
+input:hover::placeholder{
+    color: var(--accent);
+}
+label{
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+label:hover{
+    color: var(--accent);
 }

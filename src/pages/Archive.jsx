@@ -9,9 +9,9 @@ const Archive = () => {
   const archivedHabits = habits.filter(({ isArchived }) => isArchived);
 
   return (
-    <section>
+    <section className="flex-row wrap gap-10 max-width-50 flex-center">
       {archivedHabits.map((habit) => (
-        <HabitCard habit={habit} />
+        <HabitCard key={habit.id} habit={habit} />
       ))}
     </section>
   );

@@ -1,6 +1,6 @@
 .habit-card{
     border: 2px solid var(--accent);
-    min-height: 100px;
+    min-height: 200px;
     min-width: 200px;
     display: flex;
     flex-direction: column;
@@ -8,7 +8,89 @@
     border-radius: 1rem;
     margin: .5rem 0;
     transition: all 0.2s ease-in;
+    cursor: pointer;
+    gap: 1rem;
 }
 .habit-card:hover{
     background-color: rgba(236, 236, 236, 0.148);
+}
+
+
+.action-main{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.header-main{
+    padding: .5rem;
+    margin: 5px;
+    margin-bottom: 20px;
+}
+
+
+/* new habit popup */
+.add-main{
+    position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 15;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-new-main{
+    z-index: 10;
+    background-color:var(--black);
+    border: 2px solid var(--white);
+    border-radius: 10px;
+    height: 50vh;
+    margin: 100px 25%;
+    width: 50%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    
+
+}
+
+.form {
+    min-width: 60%;
+}
+
+.btn-close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    transform: scale(1.5);
+    color: var(--accent);
+    cursor: pointer;
+}
+
+.btn{
+    background-color: var(--accent);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    border: 2px solid var(--black);
+    transition: all .2s ease;
+    
+}
+
+.btn:hover{
+    background-color: var(--black);
+    color: var(--accent);
+    border: 2px solid var(--accent);
+
 }
