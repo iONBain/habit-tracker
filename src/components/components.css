@@ -15,7 +15,6 @@
     background-color: rgba(236, 236, 236, 0.148);
 }
 
-
 .action-main{
     display: flex;
     gap: 10px;
@@ -27,7 +26,6 @@
     margin: 5px;
     margin-bottom: 20px;
 }
-
 
 /* new habit popup */
 .add-main{

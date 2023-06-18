@@ -12,7 +12,7 @@ const DataProvider = ({ children }) => {
       payload: habits,
     });
   };
-  // useEffect(()=>console.log(state),[state])
+  useEffect(()=>console.log(state),[state])
   useEffect(() => {
     setHabits();
   }, []);

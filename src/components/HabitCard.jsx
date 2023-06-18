@@ -6,7 +6,10 @@ import { DataContext } from "../context/DataContext"
 const HabitCard = ({habit, isNew}) => {
     const {dataDispatch} = useContext(DataContext)
     const handleNewHabit = () => {
-        // console.log("je")
+        dataDispatch({
+            type: "SET_ON_EDIT",
+            payload: false,
+          });
         dataDispatch({
             type:"SET_EDIT_HABIT",
             payload:{

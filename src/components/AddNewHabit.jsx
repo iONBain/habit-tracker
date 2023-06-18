@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./components.css";
 import { DataContext } from "../context/DataContext";
 import { FaWindowClose } from "react-icons/fa";
@@ -11,48 +11,69 @@ import {
 
 const AddNewHabit = () => {
   const {
-    data: { habits, showPopup, editHabit },
+    data: { habits, showPopup, editHabit, onEdit },
     dataDispatch,
   } = useContext(DataContext);
-  const {
-    title:titleVal,
-    timeOfDay:timeOfDayVal,
-    goal:goalVal,
-    startDate:startDateVal,
-    repeat:repeatVal,
-  } = editHabit ? editHabit : {};
-  const nameRef = useRef();
-  const repeatRef = useRef();
-  const goalRef = useRef();
-  const timeOfDayRef = useRef();
-  const startDateRef = useRef();
+  const [formHabit, setFormHabit] = useState(
+    editHabit || {
+      title: "",
+      timeOfDay: "",
+      goal: "",
+      startDate: "",
+      repeat: "",
+    }
+  );
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormHabit((prev) => ({
+      ...[prev],
+      [name]: value,
+    }));
+  };
   const handleClose = () => {
     dataDispatch({
       type: "SET_SHOW_POPUP",
       payload: false,
     });
+    dataDispatch({
+      type: "SET_ON_EDIT",
+      payload: true,
+    });
   };
   const handleSubmit = () => {
-    const habitData = {
-      id: habits.length + 1,
-      title: nameRef.current.value,
-      timeOfDay: timeOfDayRef.current.value,
-      goal: goalRef.current.value,
-      startDate: startDateRef.current.value,
-      isArchived: false,
-      repeat: repeatRef.current.value,
-    };
+    const habitData = onEdit
+      ? formHabit
+      : {
+          id: habits.length + 1,
+          ...formHabit,
+        };
     dataDispatch({
       type: "ADD_HABIT",
       payload: habitData,
+      editType: onEdit,
     });
     dataDispatch({
       type: "SET_SHOW_POPUP",
       payload: false,
     });
   };
-
+  const handleEdit = () => {
+    if (onEdit) {
+      setFormHabit(editHabit);
+    } else {
+      setFormHabit({
+        title: "",
+        timeOfDay: "",
+        goal: "",
+        startDate: "",
+        repeat: "",
+      });
+    }
+  };
+  useEffect(() => {
+    handleEdit();
+  }, [onEdit]);
   return (
     <div className={`${!showPopup && "display-none"}`}>
       <section className={`add-new-main`}>
@@ -62,11 +83,12 @@ const AddNewHabit = () => {
           <label htmlFor="habitName" className="gap-10 flex-column">
             <p> Name: </p>
             <input
-              value={titleVal}
-              ref={nameRef}
+              value={formHabit.title}
               id="habitName"
               placeholder="Enter Habit name ..."
               type="text"
+              onChange={handleChange}
+              name="title"
             />
           </label>
 
@@ -74,7 +96,12 @@ const AddNewHabit = () => {
           <section className="flex-row gap-10 sp-bw">
             <label htmlFor="habitRepeat" className="gap-10 flex-column">
               <p> Repeat: </p>
-              <select ref={repeatRef} name="habitRepeat" id="habitRepeat" value={repeatVal}>
+              <select
+                name="habitRepeat"
+                id="habitRepeat"
+                value={formHabit.repeat}
+                onChange={handleChange}
+              >
                 {optionsRepeat.map((val) => (
                   <option key={val} value={val}>
                     {val}
@@ -84,7 +111,12 @@ const AddNewHabit = () => {
             </label>
             <label htmlFor="habitRepeat" className="gap-10 flex-column">
               <p> Goal: </p>
-              <select ref={goalRef} name="habitRepeat" id="habitRepeat" value={goalVal}>
+              <select
+                name="habitRepeat"
+                id="habitRepeat"
+                value={formHabit.goal}
+                onChange={handleChange}
+              >
                 {optionsGoal.map((val) => (
                   <option key={val} value={val}>
                     {val}
@@ -98,7 +130,12 @@ const AddNewHabit = () => {
           <section className="flex-row gap-10 sp-bw">
             <label htmlFor="habitRepeat" className="gap-10 flex-col">
               <p> Time of Day: </p>
-              <select ref={timeOfDayRef} name="habitRepeat" id="habitRepeat" value={timeOfDayVal}>
+              <select
+                name="habitRepeat"
+                id="habitRepeat"
+                value={formHabit.timeOfDay}
+                onChange={handleChange}
+              >
                 {optionsTimeOfDay.map((val) => (
                   <option key={val} value={val}>
                     {val}
@@ -108,7 +145,12 @@ const AddNewHabit = () => {
             </label>
             <label htmlFor="habitRepeat" className="gap-10 flex-col">
               <p> Start Date: </p>
-              <select ref={startDateRef} name="habitRepeat" id="habitRepeat" value={startDateVal}>
+              <select
+                name="habitRepeat"
+                id="habitRepeat"
+                value={formHabit.startDate}
+                onChange={handleChange}
+              >
                 {optionsStartDate.map((val) => (
                   <option key={val} value={val}>
                     {val}

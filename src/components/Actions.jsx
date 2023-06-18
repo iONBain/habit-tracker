@@ -13,6 +13,14 @@ const Actions = ({ habit }) => {
       type: "SET_SHOW_POPUP",
       payload: true,
     });
+    dataDispatch({
+      type: "SET_ON_EDIT",
+      payload: false,
+    });
+    dataDispatch({
+      type: "SET_ON_EDIT",
+      payload: true,
+    });
   };
   const handleArchive = () => {
     console.log(habit.id)
