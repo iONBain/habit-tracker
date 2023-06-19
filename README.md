@@ -2,7 +2,7 @@
 
 
 <div align="center">
-  <img src="https://github.com/iONBain/cuBain/blob/master/public/logo192.png" alt="logo"/>
+  <img src="/app/assets/logoN.png" alt="logo"/>
  <h1> <a href="https://ba-habit-tracker.netlify.app/" > Habit Tracker </a></h1>
     <p>Habit Tracker is a webapp which lets you do CRUD operations on habits</p>
  </div>
